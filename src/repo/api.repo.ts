@@ -31,3 +31,18 @@ export const createThing = async (thing: Partial<Thing>) => {
 
   return jsonData.slice(-1);
 };
+
+export const deleteThing = async (id: number) => {
+  const data = await fs.readFile(fileName, { encoding: 'utf-8' });
+  const jsonData = JSON.parse(data);
+  const result: Thing = jsonData.filter((item: Thing) => item.id !== id);
+  try {
+    await fs.writeFile(fileName, JSON.stringify(result), {
+      encoding: 'utf-8',
+    });
+  } catch (err) {
+    console.error(err);
+  }
+
+  return result;
+};
