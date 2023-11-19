@@ -4,6 +4,7 @@ import {
   loadThingById,
   createThing,
   deleteThing,
+  updateThing,
 } from '../repo/api.repo.js';
 import { Thing } from '../models/thing.js';
 
@@ -23,5 +24,10 @@ export const addThing = async (req: Request, res: Response) => {
 
 export const delThing = async (req: Request, res: Response) => {
   const response = await deleteThing(Number(req.params.id));
+  res.json(response);
+};
+
+export const setThing = async (req: Request, res: Response) => {
+  const response = await updateThing(Number(req.params.id), req.body);
   res.json(response);
 };

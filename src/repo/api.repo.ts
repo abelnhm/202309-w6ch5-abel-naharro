@@ -46,3 +46,21 @@ export const deleteThing = async (id: number) => {
 
   return result;
 };
+
+export const updateThing = async (id: number, thing: Partial<Thing>) => {
+  const data = await fs.readFile(fileName, { encoding: 'utf-8' });
+  const jsonData = JSON.parse(data);
+  const result: Thing = jsonData.map((item: Thing) =>
+    item.id === id ? { ...item, ...thing } : item
+  );
+
+  try {
+    await fs.writeFile(fileName, JSON.stringify(result), {
+      encoding: 'utf-8',
+    });
+  } catch (err) {
+    console.error(err);
+  }
+
+  return result;
+};
