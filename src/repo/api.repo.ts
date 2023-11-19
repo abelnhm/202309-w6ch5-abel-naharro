@@ -1,16 +1,16 @@
 import fs from 'fs/promises';
-import { Post } from '../models/post.js';
+import { Thing } from '../models/thing.js';
 
-const fileName = './dist/data/posts.json';
+const fileName = './dist/data/things.json';
 
-export const loadAllPost = async () => {
+export const loadAllThings = async () => {
   const data = await fs.readFile(fileName, { encoding: 'utf-8' });
   return JSON.parse(data);
 };
 
-export const loadPostById = async (id: number) => {
+export const loadThingById = async (id: number) => {
   const data = await fs.readFile(fileName, { encoding: 'utf-8' });
   const jsonData = JSON.parse(data);
-  const result: Post = jsonData.find((item: Post) => item.id === id);
+  const result: Thing = jsonData.find((item: Thing) => item.id === id);
   return result;
 };

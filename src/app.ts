@@ -8,4 +8,4 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/posts', apiRouter);
+app.use('/things', apiRouter);

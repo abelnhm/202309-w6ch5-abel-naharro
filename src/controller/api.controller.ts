@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import { loadAllPost, loadPostById } from '../repo/api.repo.js';
+import { loadAllThings, loadThingById } from '../repo/api.repo.js';
 
 export const getAll = async (_req: Request, res: Response) => {
-  res.json(await loadAllPost());
+  res.json(await loadAllThings());
 };
 
 export const getById = async (req: Request, res: Response) => {
-  res.json(await loadPostById(Number(req.params.id)));
+  res.json(await loadThingById(Number(req.params.id)));
 };
 
-export const addPost = async (req: Request, res: Response) => {
-  res.json({ message: 'create post' });
+export const addThing = async (req: Request, res: Response) => {
+  res.json({ message: 'create thing' });
 };
