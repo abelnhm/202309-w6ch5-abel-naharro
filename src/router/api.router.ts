@@ -9,8 +9,8 @@ import {
 
 export const apiRouter = createRouter();
 
-apiRouter.get('/', await getAll);
-apiRouter.get('/:id', await getById);
-apiRouter.post('/', await addThing);
-apiRouter.delete('/:id', await delThing);
-apiRouter.patch('/:id', await setThing);
+apiRouter.get('/', getAll);
+apiRouter.get('/:id', getById);
+apiRouter.post('/', addThing);
+apiRouter.delete('/:id', delThing);
+apiRouter.patch('/:id', setThing);
