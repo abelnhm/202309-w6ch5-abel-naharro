@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import { loadAllThings, loadThingById } from '../repo/api.repo.js';
+import { loadAllThings, loadThingById, createThing } from '../repo/api.repo.js';
+import { Thing } from '../models/thing.js';
 
 export const getAll = async (_req: Request, res: Response) => {
   res.json(await loadAllThings());
@@ -10,5 +11,7 @@ export const getById = async (req: Request, res: Response) => {
 };
 
 export const addThing = async (req: Request, res: Response) => {
-  res.json({ message: 'create thing' });
+  const thing: Partial<Thing> = req.body;
+  const response = await createThing(thing);
+  res.json(response);
 };

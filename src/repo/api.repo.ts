@@ -14,3 +14,20 @@ export const loadThingById = async (id: number) => {
   const result: Thing = jsonData.find((item: Thing) => item.id === id);
   return result;
 };
+
+export const createThing = async (thing: Partial<Thing>) => {
+  const data = await fs.readFile(fileName, { encoding: 'utf-8' });
+  const jsonData = JSON.parse(data);
+  const newThing = { ...thing, id: new Date().getTime() };
+  jsonData.push(newThing);
+
+  try {
+    await fs.writeFile(fileName, JSON.stringify(jsonData), {
+      encoding: 'utf-8',
+    });
+  } catch (err) {
+    console.error(err);
+  }
+
+  return jsonData.slice(-1);
+};
